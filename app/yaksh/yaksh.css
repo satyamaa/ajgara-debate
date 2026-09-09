@@ -1,0 +1,150 @@
+.yaksh-page {
+  min-height: 100vh;
+  background: #f6f1e7;
+  color: #3c3833;
+  padding: 70px 30px 90px;
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.yaksh-container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.yaksh-eyebrow {
+  margin: 0 0 12px;
+  color: #8b5f20;
+  font-size: 15px;
+  letter-spacing: 4px;
+  font-weight: 600;
+}
+
+.yaksh-page h1 {
+  margin: 0;
+  font-size: clamp(64px, 9vw, 110px);
+  line-height: 0.95;
+  font-weight: 500;
+  letter-spacing: -4px;
+}
+
+.yaksh-subtitle {
+  margin: 25px 0 45px;
+  font-size: 28px;
+  color: #69635c;
+}
+
+.yaksh-page form {
+  max-width: 675px;
+}
+
+.yaksh-page label {
+  display: block;
+  margin-bottom: 10px;
+  font-family: Arial, sans-serif;
+  font-size: 13px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.yaksh-page label span {
+  color: #a66b12;
+}
+
+.yaksh-page label small {
+  color: #777;
+  font-size: 12px;
+  letter-spacing: 0;
+  font-weight: normal;
+}
+
+.yaksh-page textarea,
+.yaksh-page input {
+  width: 100%;
+  box-sizing: border-box;
+  background: #fbf9f4;
+  border: 1px solid #d8c8aa;
+  padding: 22px;
+  color: #3c3833;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 22px;
+  outline: none;
+}
+
+.yaksh-page textarea {
+  height: 215px;
+  resize: vertical;
+  margin-bottom: 25px;
+}
+
+.yaksh-page textarea:focus,
+.yaksh-page input:focus {
+  border-color: #b57918;
+}
+
+.yaksh-page textarea::placeholder,
+.yaksh-page input::placeholder {
+  color: #777;
+}
+
+.yaksh-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 45px;
+}
+
+.yaksh-page input {
+  height: 72px;
+}
+
+.yaksh-page button {
+  border: none;
+  background: #ad6f0e;
+  color: white;
+  padding: 22px 28px;
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+}
+
+.yaksh-page button:hover {
+  background: #965d08;
+}
+
+.yaksh-page button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.yaksh-message {
+  margin-top: 25px;
+  font-family: Arial, sans-serif;
+  font-size: 15px;
+}
+
+@media (max-width: 700px) {
+  .yaksh-page {
+    padding: 45px 20px 70px;
+  }
+
+  .yaksh-page h1 {
+    font-size: 65px;
+    letter-spacing: -2px;
+  }
+
+  .yaksh-subtitle {
+    font-size: 22px;
+  }
+
+  .yaksh-fields {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+
+  .yaksh-page textarea {
+    height: 190px;
+  }
+}
