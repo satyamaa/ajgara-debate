@@ -1,6 +1,8 @@
+export const dynamic = "force-dynamic";
 import "./style.css";
 import { prisma } from "../lib/prisma";
 import QuestionForm from "./components/QuestionForm";
+
 
 export default async function Home() {
   const [edition, questions, participants, posts] = await Promise.all([
