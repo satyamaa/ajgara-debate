@@ -2,6 +2,7 @@ export const dynamic = "force-dynamic";
 import "./style.css";
 import { prisma } from "../lib/prisma";
 import QuestionForm from "./components/QuestionForm";
+import MobileNav from "./components/MobileNav";
 
 
 export default async function Home() {
@@ -46,6 +47,7 @@ export default async function Home() {
           <a href="#media">Media</a>
           <button>EN / हिंदी</button>
         </div>
+        <MobileNav />
       </nav>
 
       {/* HERO */}
