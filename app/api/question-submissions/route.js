@@ -93,32 +93,69 @@ export async function PATCH(request) {
 
     if (!body.id) {
       return Response.json(
-        {
-          success: false,
-          error: "Submission ID is required",
-        },
+        { success: false, error: "Submission ID is required" },
         { status: 400 }
       );
     }
 
-    const submission = await prisma.questionSubmission.update({
-      where: {
-        id: body.id,
-      },
+    const submission = await prisma.questionSubmission.findUnique({
+      where: { id: body.id },
+    });
+
+    if (!submission) {
+      return Response.json(
+        { success: false, error: "Submission not found" },
+        { status: 404 }
+      );
+    }
+
+    const updatedSubmission = await prisma.questionSubmission.update({
+      where: { id: body.id },
       data: {
         status: body.status,
         isFeatured: body.isFeatured ?? false,
         reviewedAt:
-          body.status === "APPROVED" ||
-          body.status === "FEATURED"
+          body.status === "APPROVED" || body.status === "FEATURED"
             ? new Date()
             : null,
       },
     });
 
+    if (body.status === "FEATURED" && body.isFeatured === true) {
+      const existingQuestion = await prisma.question.findFirst({
+        where: {
+          editionId: submission.editionId,
+          question: submission.question,
+        },
+      });
+
+      if (existingQuestion) {
+        await prisma.question.update({
+          where: { id: existingQuestion.id },
+          data: {
+            status: "FEATURED",
+            isFeatured: true,
+            approvedAt: new Date(),
+          },
+        });
+      } else {
+        await prisma.question.create({
+          data: {
+            editionId: submission.editionId,
+            question: submission.question,
+            theme: submission.theme,
+            status: "FEATURED",
+            isFeatured: true,
+            submittedBy: submission.name || "Public Submission",
+            approvedAt: new Date(),
+          },
+        });
+      }
+    }
+
     return Response.json({
       success: true,
-      submission,
+      submission: updatedSubmission,
     });
   } catch (error) {
     console.error("PATCH SUBMISSION ERROR:", error);
